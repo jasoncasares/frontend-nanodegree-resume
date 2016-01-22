@@ -1,6 +1,6 @@
 
 var bio = {
-	"name": "Jason Casares",
+	"name": 'Jason Casares',
 	"role": "Web Developer",
 	"contacts": {
 		"mobile": "714-222-2498",
@@ -37,7 +37,7 @@ var education = {
 		"degree": "",
 		"dates": "",
 		"location": "Rancho Santa Margarita, CA",
-		"majors": ""
+		"majors": [""]
 	}],
 
 	"onlineCourses": [{
@@ -64,45 +64,28 @@ var projects = {
 };
 
 bio.display = function () {
-	var name = "Jason Casares";
-	var formattedName = HTMLheaderName.replace("%data%", name);
+	var formattedName = HTMLheaderName.replace("%data%", bio.name);
 
 	var role = "Front End Web Developer";
-	var formattedRole = HTMLheaderRole.replace("%data%", role);
+	var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
 
 	$("#header").prepend(formattedRole);
 	$("#header").prepend(formattedName);
 
 	var newMobile = HTMLmobile.replace("%data%", bio.contacts.mobile);
-	$("#topContacts").append(newMobile);
 	var newEmail = HTMLemail.replace("%data%", bio.contacts.email);
-	$("#topContacts").append(newEmail);
 	var newGithub = HTMLgithub.replace("%data%", bio.contacts.github);
-	$("#topContacts").append(newGithub);
 	var newTwitter = HTMLtwitter.replace("%data%", bio.contacts.twitter);
-	$("#topContacts").append(newTwitter);
 	var newLocation = HTMLlocation.replace("%data%", bio.contacts.location);
-	$("#topContacts").append(newLocation);
-
-	var newMobile = HTMLmobile.replace("%data%", bio.contacts.mobile);
-	$("#footerContacts").append(newMobile);
-	var newEmail = HTMLemail.replace("%data%", bio.contacts.email);
-	$("#footerContacts").append(newEmail);
-	var newGithub = HTMLgithub.replace("%data%", bio.contacts.github);
-	$("#footerContacts").append(newGithub);
-	var newTwitter = HTMLtwitter.replace("%data%", bio.contacts.twitter);
-	$("#footerContacts").append(newTwitter);
-	var newLocation = HTMLlocation.replace("%data%", bio.contacts.location);
-	$("#footerContacts").append(newLocation);
+	$("#topContacts").append(newMobile).append(newEmail).append(newGithub).append(newTwitter).append(newLocation);
+	$("#footerContacts").append(newMobile).append(newEmail).append(newGithub).append(newTwitter).append(newLocation);
 
 	var newPic = HTMLbioPic.replace("%data%", bio.biopic);
 	$("#header").append(newPic);
 
 	var newMessage = HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
 	$("#header").append(newMessage);
-};
 
-bio.skills.display = function() {
 	if (bio.skills.length > 0) {
 
         $("#header").append(HTMLskillsStart);
@@ -157,7 +140,7 @@ projects.display = function() {
 				$(".project-entry:last").append(formattedImage);
 			});	
 		}
-	})
+	});
 };
 
 education.display = function () {
@@ -175,11 +158,10 @@ education.display = function () {
 
 		var formattedonlineUrl = HTMLonlineURL.replace("%data%", course.url);
 		$(".education-entry:last").append(formattedonlineUrl);
-	})	
+	});	
 };
 
 bio.display();
-bio.skills.display();
 work.display();
 projects.display();
 education.display();
