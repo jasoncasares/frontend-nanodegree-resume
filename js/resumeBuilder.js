@@ -6,54 +6,50 @@ var bio = {
 		"mobile": "714-222-2498",
 		"email": "jasonc@csdrafting.com",
 		"github": "jasoncasares",
+		"twitter": "@jasoncasares",
 		"location": "Rancho Santa Margarita, California"
 	},
 	"welcomeMessage": "Early to bed and early to rise makes a man healthy, wealthy and wise. -Benjamin Franklin",
 	"skills": ["Adventurer", "Entrepreneur", "AutoCAD"],
-	"bioPic": "images/FullSizeRender.jpg"
+	"biopic": "images/FullSizeRender.jpg"
 };
 
 var work = {
-	"jobs": [
-		{
-			"title": "Owner",
-			"employer": "CS Drafting",
-			"dates": "2013-2016",
-			"location": "Rancho Santa Margarita, CA",
-			"description": "A drafting/design company offering services across various disciplines including architectural, design, and structural engineering systems."
-		},
-		{
-			"title": "Co-Owner",
-			"employer": "Hapai",
-			"dates": "2015-2016",
-			"location": "Rancho Santa Margarita, CA",
-			"description": "An e-commerce baby carrier company set out to create the softest, easiest, and most comfortable baby wraps ever."		
-		}
-	]
+	"jobs": [{
+		"title": "Owner",
+		"employer": "CS Drafting",
+		"dates": "2013-2016",
+		"location": "Rancho Santa Margarita, CA",
+		"description": "A drafting/design company offering services across various disciplines including architectural, design, and structural engineering systems."
+	},
+	{
+		"title": "Co-Owner",
+		"employer": "Hapai",
+		"dates": "2015-2016",
+		"location": "Rancho Santa Margarita, CA",
+		"description": "An e-commerce baby carrier company set out to create the softest, easiest, and most comfortable baby wraps ever."		
+	}]
 };
 
 var education = {
-	"schools": [
-		{
-			"name": "",
-			"degree": "",
-			"dates": "",
-			"location": "",
-			"major": ""
-		}],
+	"schools": [{
+		"name": "",
+		"degree": "",
+		"dates": "",
+		"location": "Rancho Santa Margarita, CA",
+		"majors": ""
+	}],
 
-	"onlineCourses": [
-		{
-			"title": "Front End Web Developer Nanodegree",
-			"school": "Udacity",
-			"dates": "2016",
-			"url": "https://www.udacity.com"
-		}]
+	"onlineCourses": [{
+		"title": "Front End Web Developer Nanodegree",
+		"school": "Udacity",
+		"dates": "2016",
+		"url": "https://www.udacity.com"
+	}]
 };
 
 var projects = {
-	"projects": [
-		{
+	"projects": [{
 			"title": "Project 1",
 			"dates": "2016",
 			"images": ["images/app.jpg"],
@@ -83,6 +79,8 @@ bio.display = function () {
 	$("#topContacts").append(newEmail);
 	var newGithub = HTMLgithub.replace("%data%", bio.contacts.github);
 	$("#topContacts").append(newGithub);
+	var newTwitter = HTMLtwitter.replace("%data%", bio.contacts.twitter);
+	$("#topContacts").append(newTwitter);
 	var newLocation = HTMLlocation.replace("%data%", bio.contacts.location);
 	$("#topContacts").append(newLocation);
 
@@ -92,10 +90,12 @@ bio.display = function () {
 	$("#footerContacts").append(newEmail);
 	var newGithub = HTMLgithub.replace("%data%", bio.contacts.github);
 	$("#footerContacts").append(newGithub);
+	var newTwitter = HTMLtwitter.replace("%data%", bio.contacts.twitter);
+	$("#footerContacts").append(newTwitter);
 	var newLocation = HTMLlocation.replace("%data%", bio.contacts.location);
 	$("#footerContacts").append(newLocation);
 
-	var newPic = HTMLbioPic.replace("%data%", bio.bioPic);
+	var newPic = HTMLbioPic.replace("%data%", bio.biopic);
 	$("#header").append(newPic);
 
 	var newMessage = HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
@@ -116,70 +116,71 @@ bio.skills.display = function() {
     }
 };
 
-function displayWork() {
-	for (job in work.jobs) {
+work.display = function() {
+	work.jobs.forEach(function(job) {
 
 		$("#workExperience").append(HTMLworkStart);
 
-		var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[job].employer);
-		var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[job].title);
+		var formattedEmployer = HTMLworkEmployer.replace("%data%", job.employer);
+		var formattedTitle = HTMLworkTitle.replace("%data%", job.title);
 		var formattedEmployerTitle = formattedEmployer + formattedTitle;
 		$(".work-entry:last").append(
 			formattedEmployerTitle);
 
-		var formattedDates = HTMLworkDates.replace("%data%", work.jobs[job].dates);
+		var formattedDates = HTMLworkDates.replace("%data%", job.dates);
 		$(".work-entry:last").append(formattedDates);
 
-		var formattedLocation = HTMLworkLocation.replace("%data%",work.jobs[job].location);
+		var formattedLocation = HTMLworkLocation.replace("%data%", job.location);
 		$(".work-entry:last").append(formattedLocation);
 
-		var formattedDescription = HTMLworkDescription.replace("%data%", work.jobs[job].description);
+		var formattedDescription = HTMLworkDescription.replace("%data%", job.description);
 		$(".work-entry:last").append(formattedDescription);
-		}
+		})
 };
 
 projects.display = function() {
-	for (project in projects.projects) {
+	projects.projects.forEach(function(project) {
 		$("#projects").append(HTMLprojectStart);
 
-		var formattedTitle = HTMLprojectTitle.replace("%data%", projects.projects[project].title);
+		var formattedTitle = HTMLprojectTitle.replace("%data%", project.title);
 		$(".project-entry:last").append(formattedTitle);
 
-		var formattedDates = HTMLprojectDates.replace("%data%", projects.projects[project].dates);
+		var formattedDates = HTMLprojectDates.replace("%data%", project.dates);
 		$(".project-entry:last").append(formattedDates);
 
-		var formattedDescription = HTMLprojectDescription.replace("%data%", projects.projects[project].description);
+		var formattedDescription = HTMLprojectDescription.replace("%data%", project.description);
 		$(".project-entry:last").append(formattedDescription);
 
-		for (image in projects.projects[project].images) {
-				var formattedImage = HTMLprojectImage.replace("%data%", projects.projects[project].images[image]);
+		if (project.images.length > 0) {
+			project.images.forEach(function(image) {
+				var formattedImage = HTMLprojectImage.replace("%data%", image);
 				$(".project-entry:last").append(formattedImage);
-			
+			});	
 		}
-	}
+	})
 };
 
 education.display = function () {
-	for (course in education.onlineCourses) {
+	education.onlineCourses.forEach(function(course) {
 		$("#education").append(HTMLonlineClasses);
 
 		$("#education").append(HTMLschoolStart);
-		var formattedonlineTitle = HTMLonlineTitle.replace("%data%", education.onlineCourses[course].title);
-		var formattedonlineSchool = HTMLonlineSchool.replace("%data%", education.onlineCourses[course].school);
+		var formattedonlineTitle = HTMLonlineTitle.replace("%data%", course.title);
+		var formattedonlineSchool = HTMLonlineSchool.replace("%data%", course.school);
 		var formattedtitleSchool = formattedonlineTitle + formattedonlineSchool;
 		$(".education-entry:last").append(formattedtitleSchool);
 
-		var formattedonlineDates = HTMLonlineDates.replace("%data%", education.onlineCourses[course].dates);
+		var formattedonlineDates = HTMLonlineDates.replace("%data%", course.dates);
 		$(".education-entry:last").append(formattedonlineDates);
 
-		var formattedonlineUrl = HTMLonlineURL.replace("%data%", education.onlineCourses[course].url);
+		var formattedonlineUrl = HTMLonlineURL.replace("%data%", course.url);
 		$(".education-entry:last").append(formattedonlineUrl);
-	}	
+	})	
 };
 
 bio.display();
 bio.skills.display();
-displayWork();
+work.display();
 projects.display();
 education.display();
 
